@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Text Summarizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 AI Text Summarizer</h1>
+            <p>Enter your text below and get an AI-powered summary instantly</p>
+        </header>
+
+        <main>
+            <div class="input-section">
+                <label for="inputText">Input Text</label>
+                <textarea id="inputText" placeholder="Paste your paragraph or text here... (minimum 10 words)" 
+                         rows="8" maxlength="2000"></textarea>
+                
+                <div class="controls">
+                    <div class="length-controls">
+                        <label for="maxLength">Max Summary Length:</label>
+                        <select id="maxLength">
+                            <option value="50">Short (50 words)</option>
+                            <option value="100" selected>Medium (100 words)</option>
+                            <option value="150">Long (150 words)</option>
+                        </select>
+                    </div>
+                    
+                    <button id="summarizeBtn" class="summarize-btn">
+                        <span class="btn-text">Summarize Text</span>
+                        <div class="loading-spinner" style="display: none;"></div>
+                    </button>
+                </div>
+                
+                <div class="char-counter">
+                    <span id="charCount">0</span> / 2000 characters
+                </div>
+            </div>
+
+            <div class="output-section" id="outputSection" style="display: none;">
+                <label for="outputText">AI-Generated Summary</label>
+                <div class="summary-container">
+                    <div id="outputText" class="output-text"></div>
+                    <button id="copyBtn" class="copy-btn" title="Copy to clipboard">📋</button>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-label">Original:</span>
+                        <span id="originalLength">0 words</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Summary:</span>
+                        <span id="summaryLength">0 words</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Compression:</span>
+                        <span id="compressionRatio">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="error-message" id="errorMessage" style="display: none;"></div>
+        </main>
+
+        <footer>
+            <p>Built with ❤️ using Flask and Hugging Face Transformers</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
